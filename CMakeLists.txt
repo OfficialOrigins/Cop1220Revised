@@ -7,4 +7,5 @@ add_executable(Cop1220Revised src/main.c
         src/lyrics.c
         src/twitter.c
         src/Perfection.c
-        src/HomeSales.c)
+        src/HomeSales.c
+        src/HomesalesV2.c)
