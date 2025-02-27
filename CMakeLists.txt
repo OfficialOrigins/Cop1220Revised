@@ -9,4 +9,5 @@ add_executable(Cop1220Revised src/main.c
         src/Perfection.c
         src/HomeSales.c
         src/HomesalesV2.c
-        src/PerfectionV2.c)
+        src/PerfectionV2.c
+        src/HurricaneCatCheckV2.c)
