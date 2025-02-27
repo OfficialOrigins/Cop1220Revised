@@ -8,4 +8,5 @@ add_executable(Cop1220Revised src/main.c
         src/twitter.c
         src/Perfection.c
         src/HomeSales.c
-        src/HomesalesV2.c)
+        src/HomesalesV2.c
+        src/PerfectionV2.c)
