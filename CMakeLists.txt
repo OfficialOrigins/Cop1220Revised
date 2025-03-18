@@ -12,4 +12,4 @@ add_executable(Cop1220Revised src/main.c
         src/PerfectionV2.c
         src/HurricaneCatCheckV2.c
         src/HomeSalesV3.c
-        "src/TemperatureComparsion .c")
+        "src/TemperatureComparsion.c")
