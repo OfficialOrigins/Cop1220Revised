@@ -6,75 +6,87 @@
 // //3/18/25
 // //HomeSales V3
 //
-//
-// int main(void)
-// {
-//     static char salesIntial;
-//     static int total;
-//     static bool x = true;
-//
-//     int salesP[3];
-//
-//     while (x)
-//     {
-//         printf("Enter your Salesman intial: ");
-//         scanf(" %c", &salesIntial);
-//
-//         salesIntial = toupper(salesIntial);
-//
-//         char salesManIntials[3] = {'D', 'E', 'F'};
-//
-//         switch (salesIntial)
-//         {
-//         case 'D':
-//             printf("Enter the sale value: ");
-//             scanf("%d",&salesP[0]);//d
-//             break;
-//
-//         case 'E':
-//             printf("Enter the sale value: ");
-//             scanf("%d",&salesP[1]);//e
-//             break;
-//
-//         case 'F':
-//             printf("Enter the sale value: ");
-//             scanf("%d",&salesP[2]);//f
-//             break;
-//
-//         case 'Z':
-//             total = salesP[0] + salesP[1] + salesP[2];
-//             printf("Your grand total is: %d", total);
-//             if (salesP[0] > salesP[1])
-//             {
-//                 if (salesP[0] > salesP[2])
-//                 {
-//                     printf("\nHighest Sale: D");
-//                 }
-//             }
-//
-//             if (salesP[1] > salesP[0])
-//             {
-//                 if (salesP[1] > salesP[2])
-//                 {
-//                     printf("\nHighest Sale: E");
-//                 }
-//             }
-//
-//             if (salesP[2] > salesP[0])
-//             {
-//                 if (salesP[2] > salesP[1])
-//                 {
-//                     printf("\nHighest Sale: F");
-//                 }
-//             }
-//
-//             x = false;
-//             break;
-//
-//         default:
-//             printf("Intermediate output: Error, invalid salesperson selected, please try again \n");
-//             break;
-//         }
-//     }
-//     return 0;
-// }
+#include <ctype.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+typedef struct {
+    char name[20];
+    char initial;
+    int sales;
+} SalesPerson;
+
+int main(void)
+{
+    char salesInitial;
+    int total = 0;
+    bool x = true;
+
+    SalesPerson salesPeople[3] = {
+        {"Danielle", 'D', 0},
+        {"Edward", 'E', 0},
+        {"Francis", 'F', 0}
+    };
+
+    while (x)
+    {
+        printf("Enter your Salesman initial (D, E, F, or Z to exit): ");
+        scanf(" %c", &salesInitial);
+
+        salesInitial = toupper(salesInitial);
+
+        if (salesInitial == 'Z')
+        {
+            total = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                total += salesPeople[i].sales;
+            }
+
+            printf("Your grand total is: %d", total);
+
+            int maxIndex = 0;
+            for (int i = 1; i < 3; i++)
+            {
+                if (salesPeople[i].sales > salesPeople[maxIndex].sales)
+                {
+                    maxIndex = i;
+                }
+            }
+
+            printf("\nHighest Sale: %c (%s) with $%d",
+                   salesPeople[maxIndex].initial,
+                   salesPeople[maxIndex].name,
+                   salesPeople[maxIndex].sales);
+
+            x = false;
+        }
+        else
+        {
+            int salesPersonIndex = -1;
+            for (int i = 0; i < 3; i++)
+            {
+                if (salesPeople[i].initial == salesInitial)
+                {
+                    salesPersonIndex = i;
+                    break;
+                }
+            }
+
+            if (salesPersonIndex != -1)
+            {
+                int saleValue;
+                printf("Enter the sale value for %s: ", salesPeople[salesPersonIndex].name);
+                scanf("%d", &saleValue);
+                salesPeople[salesPersonIndex].sales += saleValue;
+            }
+            else
+            {
+                printf("Error, invalid salesperson selected, please try again\n");
+            }
+        }
+    }
+
+    return 0;
+}

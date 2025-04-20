@@ -16,4 +16,5 @@ add_executable(Cop1220Revised src/main.c
         "src/TemperatureComparsion .c"
         src/PigLatin.c
         src/ceasercode.c
+        src/forFun.c
 )
