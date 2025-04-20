@@ -17,4 +17,7 @@ add_executable(Cop1220Revised src/main.c
         src/PigLatin.c
         src/ceasercode.c
         src/forFun.c
+        src/homeSalesv4.c
+        src/unit_tests.c
+        src/unit_tests.h
 )
